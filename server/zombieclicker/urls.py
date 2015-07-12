@@ -16,6 +16,8 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 from unlockables.views import *
+from django.conf.urls import patterns
+from django.conf import settings
 
 apipatterns = [
     url(r'^admin/', include(admin.site.urls)),
@@ -26,5 +28,12 @@ apipatterns = [
 ]
 
 urlpatterns = [
+
     url(r'^api/', include(apipatterns))
 ]
+if settings.DEBUG:
+    urlpatterns += patterns('',
+            url(r'^(?P<path>.*)$', 'django.views.static.serve', {
+                'document_root': settings.ANGULAR_ROOT,
+            }),
+       )
