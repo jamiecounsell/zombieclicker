@@ -1,4 +1,4 @@
-angular.module('zombie').service('userService', function() {
+angular.module('zombie').service('users', function() {
     if (localStorage["userPrefs"]) {
         this.userPrefs = JSON.parse(localStorage["userPrefs"])
     } else {

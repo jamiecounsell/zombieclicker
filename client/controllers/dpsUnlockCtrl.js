@@ -1,5 +1,6 @@
-function dpsUnlockCtrl(userService) {
-    this.userService = userService;
+function dpsUnlockCtrl(users, api) {
+    this.users = users;
+    this.api = api.getUnlockables();
 
     this.unlockableItems = [
             {
@@ -27,13 +28,13 @@ angular.module('zombie').controller('dpsUnlockCtrl', dpsUnlockCtrl)
 
 dpsUnlockCtrl.prototype.upgradeItem = function(itemId) {
     console.log(itemId)
-    if (this.userService.userGame.unlocks[itemId]) {
-        this.userService.userGame.unlocks[itemId] ++ ;
+    if (this.users.userGame.unlocks[itemId]) {
+        this.users.userGame.unlocks[itemId] ++ ;
     } else  {
-        this.userService.userGame.unlocks[itemId] = 1;
+        this.users.userGame.unlocks[itemId] = 1;
     }
 };
 
 dpsUnlockCtrl.prototype.numberOf = function(itemId) {
-    return this.userService.userGame.unlocks[itemId] || 0;
+    return this.users.userGame.unlocks[itemId] || 0;
 };
